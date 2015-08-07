@@ -12,7 +12,7 @@ fi
 
 
 git_status_color(){
-   if [ "$(git diff --cached --no-ext-diff --numstat)" ] ; then  # Staged
+   if [ "$(git diff --cached --no-ext-diff --numstat 2> /dev/null)" ] ; then  # Staged
 	echo %{$fg[yellow]%}
    elif [  "$(git diff-index --name-only HEAD -- 2> /dev/null)"  ] ; then #Dirty 
 	echo  %{$fg[red]%}
