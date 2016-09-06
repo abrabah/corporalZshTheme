@@ -1,8 +1,7 @@
 
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="blue"; fi
 
-PROMPT='%{$fg[$NCOLOR]%}%c »%{$reset_color%} '
-RPROMPT='%{$fg[$NCOLOR]%}%p $(git_prompt_info)%{$reset_color%}'
+PROMPT='%{$fg[$NCOLOR]%}%c%{$fg[$NCOLOR]%}%p$(git_prompt_info)%{$reset_color%} »%{$reset_color%} '
 
 
 function git_stashed(){
@@ -29,7 +28,7 @@ function git_count(){
 
 git_prompt_info(){
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo "$(git_status_color)$(git_stashed)$(current_branch)%{$reset_color%}$(git_count)"
+  echo ":$(git_status_color)$(git_stashed)$(current_branch)%{$reset_color%}$(git_count)"
 }
 
 
