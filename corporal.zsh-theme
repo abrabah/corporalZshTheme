@@ -20,6 +20,10 @@ git_status_color(){
    fi 
 }
 
+git_repo_name(){
+  basename `git rev-parse --show-toplevel`
+}
+
 function git_count(){
  echo $(git rev-list --left-right '@{upstream}...HEAD' 2> /dev/null |  awk '/>/ {a += 1} /</ {b += 1} END {if (a > 0 || b > 0) printf(" "); if (a > 0) printf("%s%d","↑",a); if (b > 0) printf("%s%d","↓",b) }')
 }
@@ -28,7 +32,7 @@ function git_count(){
 
 git_prompt_info(){
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo ":$(git_status_color)$(git_stashed)$(git_current_branch)%{$reset_color%}$(git_count)"
+  echo ":$(git_status_color)$(git_repo_name):$(git_stashed)$(git_current_branch)%{$reset_color%}$(git_count)"
 }
 
 
