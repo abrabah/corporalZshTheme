@@ -5,7 +5,7 @@ PROMPT='%{$fg[$NCOLOR]%}%c%{$fg[$NCOLOR]%}%p$(git_prompt_info)%{$reset_color%} �
 
 
 function git_stashed(){
- if [ "$(git rev-parse --verify --quiet refs/stash  2>/dev/null)" != "" ] ; then echo "▲ " 
+ if [ "$(git rev-parse --verify --quiet refs/stash  2>/dev/null)" != "" ] ; then echo "▲" 
 fi
 }
 
@@ -32,7 +32,7 @@ function git_count(){
 
 git_prompt_info(){
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo ":$(git_status_color)$(git_repo_name):$(git_stashed)$(git_current_branch)%{$reset_color%}$(git_count)"
+  echo ":$(git_status_color)($(git_repo_name) $(git_stashed) $(git_current_branch))%{$reset_color%}$(git_count)"
 }
 
 
